@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">হাদিসের উক্তি</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">হাদিসের উক্তি</string>
+    <string name="nav_header_subtitle">worldtechpoints@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_admin_Panel">Admin Panel</string>
+    <string name="action_exit">Exit</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_Policy">Policy</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_rateUs">Rate Us</string>
+
+
+    <string name="test_app_id">ca-app-pub-3940256099942544~3347511713</string>
+
+    <string name="test_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="test_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="test_videoReward_ad_unit_id">ca-app-pub-3940256099942544/5224354917</string>
+
+
+    <string name="app_id">ca-app-pub-4827628049386824~5128938875</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-4827628049386824/8876612190</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-4827628049386824/3624285512</string>
+    <string name="videoReward_ad_unit_id">ca-app-pub-4827628049386824/9806550483</string>
+
+    <string name="banner_ad_unit_id2">ca-app-pub-4827628049386824/7563530520</string>
+    <string name="interstitial_ad_unit_id2">ca-app-pub-4827628049386824/5138631448</string>
+    <string name="videoReward_ad_unit_id2">ca-app-pub-4827628049386824/9129206716</string>
+
+</resources>

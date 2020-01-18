@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "442004091399",
+    "firebase_url": "https://smscollection-10f05.firebaseio.com",
+    "project_id": "smscollection-10f05",
+    "storage_bucket": "smscollection-10f05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442004091399:android:c9e62af4f3ffd2023430a2",
+        "android_client_info": {
+          "package_name": "com.farhad.sms_collection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442004091399-4acvnpkm12kv7hcr1mghhu5v33n28vmg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.farhad.sms_collection",
+            "certificate_hash": "262d321363fce92bbe5b278c1f20693d921fb38c"
+          }
+        },
+        {
+          "client_id": "442004091399-l9h7g94crtqbdffbhd8br33legb2ptlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh03jWGguXvJx3tZ4xezHtq32_zjZF6UY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442004091399-l9h7g94crtqbdffbhd8br33legb2ptlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
