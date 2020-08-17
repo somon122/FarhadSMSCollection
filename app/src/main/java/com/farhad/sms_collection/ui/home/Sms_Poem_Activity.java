@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,9 +48,28 @@ public class Sms_Poem_Activity extends AppCompatActivity implements RewardedVide
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
-            this.finish();
+
+            if (mInterstitialAd.isLoaded()){
+                mInterstitialAd.show();
+            } {
+                this.finish();
+
+            }
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (mInterstitialAd.isLoaded()){
+            mInterstitialAd.show();
+        }else {
+
+            this.finish();
+
+        }
     }
 
     private TextView waitingTV,counterTV;
@@ -58,17 +78,12 @@ public class Sms_Poem_Activity extends AppCompatActivity implements RewardedVide
     private AdView mAdView;
     private RewardedVideoAd mRewardedVideoAd;
     private InterstitialAd mInterstitialAd;
-
-
     private ProgressBar progressBar;
-
     private FirebaseFirestore mfirestore;
     private List<ModelClass> dataList;
     private int size;
     private String currentData;
     private int updateCount;
-    private int score;
-
     private static final long START_TIME_IN_MILLIS2 = 5000;
     private CountDownTimer mCountDownTimer2;
     private boolean mTimerRunning2;
@@ -146,7 +161,7 @@ public class Sms_Poem_Activity extends AppCompatActivity implements RewardedVide
 
             @Override
             public void onAdClosed() {
-                adsCount=0;
+                finish();
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
             }
@@ -159,17 +174,8 @@ public class Sms_Poem_Activity extends AppCompatActivity implements RewardedVide
 
                 try {
                     if (updateCount < size ){
-                        if (adsCount >=3){
-                            if (mInterstitialAd.isLoaded()){
-                                mInterstitialAd.show();
+                        nextSMS();
 
-                            }else {
-                                nextSMS();
-                            }
-
-                        }else {
-                            nextSMS();
-                        }
                     }else {
                         dataStatus();
                     }
@@ -185,12 +191,8 @@ public class Sms_Poem_Activity extends AppCompatActivity implements RewardedVide
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dataShare(currentData);
 
-             if (mRewardedVideoAd.isLoaded()){
-                 mRewardedVideoAd.show();
-             }else {
-                 dataShare(currentData);
-             }
 
             }
         });
@@ -198,13 +200,12 @@ public class Sms_Poem_Activity extends AppCompatActivity implements RewardedVide
     }
 
     private void nextSMS() {
-        adsCount = adsCount+1;
         updateCount = updateCount+1;
         counterTV.setText(updateCount+"/"+size);
-        waitingTV.setVisibility(View.VISIBLE);
-        nextButton.setVisibility(View.GONE);
+        /*waitingTV.setVisibility(View.VISIBLE);
+        nextButton.setVisibility(View.GONE);*/
         updatedata(updateCount);
-        startTimer2();
+        //startTimer2();
     }
 
     private void loadRewardedVideoAd() {

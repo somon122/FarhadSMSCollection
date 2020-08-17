@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -46,9 +47,28 @@ public class HadishActivity extends AppCompatActivity implements RewardedVideoAd
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
-            this.finish();
+
+            if (mInterstitialAd.isLoaded()){
+                mInterstitialAd.show();
+            } {
+                this.finish();
+
+            }
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (mInterstitialAd.isLoaded()){
+            mInterstitialAd.show();
+        }else {
+
+            this.finish();
+
+        }
     }
 
     private TextView waitingTV,counterTV;
@@ -66,14 +86,13 @@ public class HadishActivity extends AppCompatActivity implements RewardedVideoAd
     private int size;
     private String currentData;
     private int updateCount;
-    private int score;
 
     private static final long START_TIME_IN_MILLIS2 = 5000;
     private CountDownTimer mCountDownTimer2;
     private boolean mTimerRunning2;
     private long mTimeLeftInMillis2;
     private long mEndTime2;
-    private int adsCount;
+
 
 
 
@@ -146,9 +165,7 @@ public class HadishActivity extends AppCompatActivity implements RewardedVideoAd
 
             @Override
             public void onAdClosed() {
-                adsCount=0;
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
+               finish();
             }
         });
 
@@ -159,17 +176,8 @@ public class HadishActivity extends AppCompatActivity implements RewardedVideoAd
 
                 try {
                     if (updateCount < size ){
-                        if (adsCount >=3){
-                            if (mInterstitialAd.isLoaded()){
-                                mInterstitialAd.show();
-
-                            }else {
-                                nextSMS();
-                            }
-
-                        }else {
                             nextSMS();
-                        }
+
                     }else {
                         dataStatus();
                     }
@@ -186,11 +194,8 @@ public class HadishActivity extends AppCompatActivity implements RewardedVideoAd
             @Override
             public void onClick(View v) {
 
-                if (mRewardedVideoAd.isLoaded()){
-                    mRewardedVideoAd.show();
-                }else {
-                    dataShare(currentData);
-                }
+                dataShare(currentData);
+
 
             }
         });
@@ -198,13 +203,12 @@ public class HadishActivity extends AppCompatActivity implements RewardedVideoAd
     }
 
     private void nextSMS() {
-        adsCount = adsCount+1;
         updateCount = updateCount+1;
         counterTV.setText(updateCount+"/"+size);
-        waitingTV.setVisibility(View.VISIBLE);
-        nextButton.setVisibility(View.GONE);
+       /* waitingTV.setVisibility(View.VISIBLE);
+        nextButton.setVisibility(View.GONE);*/
         updatedata(updateCount);
-        startTimer2();
+       // startTimer2();
     }
 
     private void loadRewardedVideoAd() {

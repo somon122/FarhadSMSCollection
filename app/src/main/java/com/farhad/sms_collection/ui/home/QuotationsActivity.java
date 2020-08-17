@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -48,9 +49,22 @@ public class QuotationsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
-            this.finish();
+            if (interstitialAd.isAdLoaded()){
+                interstitialAd.show();
+            } {
+                this.finish();
+            }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (interstitialAd.isAdLoaded()){
+            interstitialAd.show();
+        }else {
+            this.finish();
+        }
     }
 
     private TextView waitingTV,counterTV;
@@ -62,34 +76,24 @@ public class QuotationsActivity extends AppCompatActivity {
     private int size;
     private String currentData;
     private int updateCount;
-    private int score;
     private static final long START_TIME_IN_MILLIS2 = 5000;
     private CountDownTimer mCountDownTimer2;
     private boolean mTimerRunning2;
     private long mTimeLeftInMillis2;
     private long mEndTime2;
-
     private InterstitialAd interstitialAd;
     private RewardedVideoAd rewardedVideoAd;
     private AdView adView;
-
-    private int adsCount;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotations);
 
-
-
         Toolbar toolbar = findViewById(R.id.quotationsToolBar_id);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         waitingTV = findViewById(R.id.quotationsWaiting_id);
         dataTV = findViewById(R.id.quotationsView_id);
@@ -171,8 +175,7 @@ public class QuotationsActivity extends AppCompatActivity {
             public void onInterstitialDismissed(Ad ad) {
                 super.onInterstitialDismissed(ad);
 
-                adsCount=0;
-                nextSMS();
+                finish();
                 interstitialAd.loadAd();
             }
 
@@ -196,19 +199,7 @@ public class QuotationsActivity extends AppCompatActivity {
 
                 try {
                     if (updateCount < size ){
-
-                        if (adsCount>=3){
-                            if(interstitialAd.isAdLoaded()){
-                                interstitialAd.show();
-                            }else {
-                                nextSMS();
-                            }
-
-                        }else {
-                            nextSMS();
-                        }
-
-
+                        nextSMS();
 
                     }else {
                       dataStatus();
@@ -226,26 +217,21 @@ public class QuotationsActivity extends AppCompatActivity {
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rewardedVideoAd.isAdLoaded()){
-                    rewardedVideoAd.show();
 
-                }else {
-                    dataShare(currentData);
-                }
-
+                dataShare(currentData);
             }
         });
 
     }
 
     private void nextSMS() {
-        adsCount = adsCount+1;
+
         updateCount = updateCount+1;
         counterTV.setText(updateCount+"/"+size);
-        waitingTV.setVisibility(View.VISIBLE);
-        nextButton.setVisibility(View.GONE);
+       /* waitingTV.setVisibility(View.VISIBLE);
+        nextButton.setVisibility(View.GONE);*/
         updatedata(updateCount);
-        startTimer2();
+       // startTimer2();
     }
 
     private void dataShare(String body) {

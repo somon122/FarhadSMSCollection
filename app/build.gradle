@@ -8,8 +8,8 @@ android {
         applicationId "com.farhad.sms_collection"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,7 +34,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.facebook.android:audience-network-sdk:5.+'
     implementation 'com.codesgood:justifiedtextview:1.1.0'
+
 }

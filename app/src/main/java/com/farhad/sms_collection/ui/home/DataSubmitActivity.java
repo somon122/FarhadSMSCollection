@@ -62,11 +62,12 @@ public class DataSubmitActivity extends AppCompatActivity {
         setTitle("Admin Panel");
         mfirestore = FirebaseFirestore.getInstance();
 
-        List<String> paymentSystem = new ArrayList<String>();
-        paymentSystem.add("ইংলিশ_হাদিস-1");
-        paymentSystem.add("ইংলিশ_হাদিস-2");
-        paymentSystem.add("বাংলা_হাদিস-১");
-        paymentSystem.add("বাংলা_হাদিস-২");
+        List<String> dataCategory = new ArrayList<String>();
+        dataCategory.add("ইংলিশ_হাদিস-1");
+        dataCategory.add("ইংলিশ_হাদিস-2");
+        dataCategory.add("বাংলা_হাদিস-১");
+        dataCategory.add("বাংলা_হাদিস-২");
+        dataCategory.add("Slide_images");
 
 
         submitButton = findViewById(R.id.submitButton_id);
@@ -75,7 +76,7 @@ public class DataSubmitActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.submitProgressBar);
         progressBar.setVisibility(View.GONE);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, paymentSystem);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dataCategory);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(dataAdapter);
